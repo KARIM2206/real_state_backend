@@ -100,23 +100,24 @@ router.post(
       res,
     });
   },
-  ////////////////// Google auth
-  router.post(
-    "/signup/gmail",
-    validation(validators.roleValidation),
-    async (req: Request, res: Response, next: NextFunction) => {
-      const account = await authService.signupWithGmail(
-        req.body.idToken,
-        req.body.role,
-        `${req.protocol}://${req.host}`,
-      );
-      successResponse({
-        message: "Account created successfully",
-        res,
-        data: account,
-      });
-    },
-  ),
+);
+
+////////////////// Google auth
+router.post(
+  "/signup/gmail",
+  validation(validators.roleValidation),
+  async (req: Request, res: Response, next: NextFunction) => {
+    const account = await authService.signupWithGmail(
+      req.body.idToken,
+      req.body.role,
+      `${req.protocol}://${req.host}`,
+    );
+    successResponse({
+      message: "Account created successfully",
+      res,
+      data: account,
+    });
+  },
 );
 router.post(
   "/logout",

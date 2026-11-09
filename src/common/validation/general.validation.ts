@@ -14,7 +14,10 @@ export const generalValidationFields = {
     .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,16}$/, {
       error: "Make sure to follow the indicated password pattern",
     }),
-  role: z.enum(["1", "2"]).pipe(z.coerce.number()),
+  role: z.coerce
+    .string()
+    .pipe(z.enum(["1", "2", "3"]))
+    .pipe(z.coerce.number()),
   phone: z
     .string("Phone number is required")
     .regex(/^(00201|\+201|01)(0|1|2|5)\d{8}$/, {

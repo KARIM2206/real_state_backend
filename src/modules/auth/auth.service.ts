@@ -375,8 +375,8 @@ class AuthService {
     }
     const createdUser = await this.userRepo.createOne({
       data: {
-        firstName: payload.given_name,
-        lastName: payload.family_name,
+        firstName: payload.given_name || "Google",
+        lastName: payload.family_name || payload.given_name || "User",
         email: payload.email,
         role,
         provider: ProviderEnums.GOOGLE,
